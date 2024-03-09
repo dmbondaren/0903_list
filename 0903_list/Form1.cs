@@ -111,5 +111,54 @@ namespace _0903_list
         {
 
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            int selectedIndex = listBox1.SelectedIndex;
+
+            if (selectedIndex != -1)
+            {
+                Group selectedGroup = groups[selectedIndex];
+
+                // Open Form4 for editing the selected group
+                Form4 form4 = new Form4(selectedGroup);
+                DialogResult result = form4.ShowDialog();
+
+                if (result == DialogResult.OK)
+                {
+                    // Refresh the ListBox with the updated group information
+                    listBox1.Items[selectedIndex] = selectedGroup.DisplayGroupInfo();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a group.");
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            int selectedIndex = listBox1.SelectedIndex;
+
+            if (selectedIndex != -1)
+            {
+                Group selectedGroup = groups[selectedIndex];
+
+                // Open Form4 for editing the selected student
+                Form4 form4 = new Form4(selectedGroup.GetStudentByIndex(selectedIndex)); // Use selectedIndex here
+                DialogResult result = form4.ShowDialog();
+
+                if (result == DialogResult.OK)
+                {
+                    // Refresh the ListBox with the updated group information
+                    listBox1.Items[selectedIndex] = selectedGroup.DisplayGroupInfo();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a group.");
+            }
+        }
+
     }
 }
